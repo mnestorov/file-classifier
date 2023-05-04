@@ -6,7 +6,7 @@ import logging
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from config import download_folder, classification_rules, GREEN, RESET, log_filename
+from config import (download_folder, classification_rules, GREEN, RESET, log_filename)
 
 # Configure logging
 logging.basicConfig(filename=log_filename, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
