@@ -2,9 +2,14 @@ import os
 import shutil
 import time
 import re
+import logging
+from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from config import download_folder, classification_rules, GREEN, RESET
+from config import download_folder, classification_rules, GREEN, RESET, log_filename
+
+# Configure logging
+logging.basicConfig(filename=log_filename, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Function to determine the folder to move the file to based on its extension
 def classify_file(file, rules):
@@ -27,6 +32,11 @@ def is_duplicate(file):
         return original_file_name
     else:
         return None
+    
+def get_date_folder(file_path):
+    last_modified = os.path.getmtime(file_path)
+    date = datetime.fromtimestamp(last_modified).strftime('%Y-%m-%d')
+    return date    
 
 # Function to classify and move existing files in the download folder
 def classify_existing_files():
@@ -37,17 +47,24 @@ def classify_existing_files():
             target_folder = classify_file(file, classification_rules)
             
             if target_folder:
-                target_path = os.path.join(download_folder, target_folder, file)
+                date_folder = get_date_folder(file_path)
+                target_path = os.path.join(download_folder, target_folder, date_folder, file)
+                
+                if not os.path.exists(os.path.dirname(target_path)):
+                    os.makedirs(os.path.dirname(target_path))
+                
                 shutil.move(file_path, target_path)
-                print(f'{GREEN}Moved {file} to {target_folder}{RESET}')
+                print(f'{GREEN}Moved {file} to {target_folder}/{date_folder}{RESET}')
+                logging.info(f'Moved {file} to {target_folder}/{date_folder}')
                 
                 # Check if the file is a duplicate and delete it if the original exists
                 original_file = is_duplicate(file)
                 if original_file:
-                    original_file_path = os.path.join(download_folder, target_folder, original_file)
+                    original_file_path = os.path.join(download_folder, target_folder, date_folder, original_file)
                     if os.path.exists(original_file_path):
                         os.remove(target_path)
                         print(f'{GREEN}Deleted duplicate file {file}{RESET}')
+                        logging.info(f'Deleted duplicate file {file}')
 
 # Custom event handler to handle file creation events
 class DownloadHandler(FileSystemEventHandler):
@@ -57,17 +74,24 @@ class DownloadHandler(FileSystemEventHandler):
             target_folder = classify_file(file, classification_rules)
             
             if target_folder:
-                target_path = os.path.join(download_folder, target_folder, os.path.basename(file))
+                date_folder = get_date_folder(file)
+                target_path = os.path.join(download_folder, target_folder, date_folder, os.path.basename(file))
+                
+                if not os.path.exists(os.path.dirname(target_path)):
+                    os.makedirs(os.path.dirname(target_path))
+                
                 shutil.move(file, target_path)
-                print(f'{GREEN}Moved {file} to {target_folder}{RESET}')
+                print(f'{GREEN}Moved {file} to {target_folder}/{date_folder}{RESET}')
+                logging.info(f'Moved {file} to {target_folder}/{date_folder}')
                 
                 # Check if the file is a duplicate and delete it if the original exists
                 original_file = is_duplicate(os.path.basename(file))
                 if original_file:
-                    original_file_path = os.path.join(download_folder, target_folder, original_file)
+                    original_file_path = os.path.join(download_folder, target_folder, date_folder, original_file)
                     if os.path.exists(original_file_path):
                         os.remove(target_path)
                         print(f'{GREEN}Deleted duplicate file {os.path.basename(file)}{RESET}')
+                        logging.info(f'Deleted duplicate file {os.path.basename(file)}')
 
 def main():
     # Create the necessary folders if they don't exist

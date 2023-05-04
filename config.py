@@ -13,3 +13,6 @@ classification_rules = {
 # ANSI escape code for green text
 GREEN = '\033[32m'
 RESET = '\033[0m'
+
+# Log filename
+log_filename = 'app.log'

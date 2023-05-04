@@ -56,7 +56,7 @@ chmod +x file_classifier.py
 **Also, make the bash script executable by running:**
 
 ```
-chmod +x run_classifier.sh
+chmod +x file_classifier.sh
 ```
 
 ## Customization
@@ -67,22 +67,23 @@ chmod +x run_classifier.sh
 
 ## TODO
 
-- File size-based classification: Classify files based on their size (e.g., create separate folders for small, medium, and large files) in addition to their file type.
 
-- Date-based classification: Organize files into folders based on the date they were created or last modified.
+- **_File size-based classification_**: Classify files based on their size (e.g., create separate folders for small, medium, and large files) in addition to their file type.
 
-- File content-based classification: For specific file types, such as text files or code files, classify them based on their content (e.g., programming language, presence of specific keywords).
+- [x] **_Date-based classification_**: ~~Organize files into folders based on the date they were created or last modified~~.
 
-- User-defined classification: Allow users to define their own custom classification rules, such as regular expressions or other matching criteria, to create a more personalized organization system.
+- **_File content-based classification_**: For specific file types, such as text files or code files, classify them based on their content (e.g., programming language, presence of specific keywords).
 
-- Logging: Keep a log of all actions performed by the script, such as files moved or deleted, for better traceability and understanding of the changes made.
+- **_User-defined classification_**: Allow users to define their own custom classification rules, such as regular expressions or other matching criteria, to create a more personalized organization system.
 
-- Undo functionality: Implement an undo feature that allows users to revert the script's actions if they accidentally move or delete a file.
+- [x] **_Logging_**: ~~Keep a log of all actions performed by the script, such as files moved or deleted, for better traceability and understanding of the changes made~~.
 
-- Automatic folder cleanup: Periodically check the folders for old files and either move them to an archive folder or delete them based on user preferences.
+- **_Undo functionality_**: Implement an undo feature that allows users to revert the script's actions if they accidentally move or delete a file.
 
-- Notifications: Send notifications to the user when certain events occur, such as the creation of new files or the detection of duplicate files.
+- **_Automatic folder cleanup_**: Periodically check the folders for old files and either move them to an archive folder or delete them based on user preferences.
 
-- File integrity check: Perform a file integrity check (e.g., using checksums) to ensure that duplicate files are not only similar in name but also identical in content before deleting them.
+- **_Notifications_**: Send notifications to the user when certain events occur, such as the creation of new files or the detection of duplicate files.
 
-- GUI: Develop a graphical user interface (GUI) for the script, making it more user-friendly and easier to configure and monitor.
+- **_File integrity check_**: Perform a file integrity check (e.g., using checksums) to ensure that duplicate files are not only similar in name but also identical in content before deleting them.
+
+- **_GUI_**: Develop a graphical user interface (GUI) for the script, making it more user-friendly and easier to configure and monitor.
