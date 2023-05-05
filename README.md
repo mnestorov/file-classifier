@@ -23,7 +23,7 @@ Download the main script file `main.py` and the configuration file `config.py`.
 
 Open the `config.py` file and modify the **download_folder** variable to the path of the directory you want to monitor (e.g., your Downloads folder).
 
-In the same file, you can also modify the classification_rules dictionary to customize the folders and file types used for classification. The key is the folder name, and the value is a list of file extensions.
+In the same file, you can also modify the **classification_rules** dictionary to customize the folders and file types used for classification. The key is the folder name, and the value is a list of file extensions.
 
 Optionally, you can customize the **GREEN** and **RESET** variables in `config.py` to change the color of the printed messages.
 
