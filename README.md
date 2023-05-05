@@ -19,7 +19,7 @@ pip install watchdog
 
 ## Installation
 
-Download the main script file `file_classifier.py` and the configuration file `config.py`.
+Download the main script file `main.py` and the configuration file `config.py`.
 
 Open the `config.py` file and modify the **download_folder** variable to the path of the directory you want to monitor (e.g., your Downloads folder).
 
@@ -29,12 +29,12 @@ Optionally, you can customize the **GREEN** and **RESET** variables in `config.p
 
 ## Usage
 
-Open a terminal or command prompt, navigate to the folder containing the `file_classifier.py` and `config.py` files.
+Open a terminal or command prompt, navigate to the folder containing the `main.py` and `config.py` files.
 
 **Run the script using the following command:**
 
 ```
-python file_classifier.py
+python main.py
 ```
 
 The script will start monitoring the specified directory. When a new file is added or an existing file is modified, the script will automatically move the file to the appropriate folder based on its file type and date.
@@ -45,28 +45,43 @@ If a duplicate file is detected, the script will delete it, provided that it has
 
 ## Bash Command
 
-To use bash command to run the script, first make sure that the Python script file `file_classifier.py` is executable. 
+To use bash command to run the script, first make sure that the Python script file `main.py` is executable. 
 
 **You can do this by running the following command in your terminal:**
 
 ```
-chmod +x file_classifier.py
+chmod +x main.py
 ```
 
 **Also, make the bash script executable by running:**
 
 ```
-chmod +x file_classifier.sh
+chmod +x start.sh
 ```
 
 ## Customization
 
 - To add more file types or folders for classification, edit the **classification_rules** dictionary in the `config.py` file.
 
-- To change the date format used for organizing files, modify the strftime format string in the **get_date_folder** function within the `file_classifier.py` file.
+- To change the date format used for organizing files, modify the strftime format string in the **get_date_folder** function within the `main.py` file.
+
+## Run the script at startup
+
+To run the script at startup on Ubuntu 22.04, you have a few options.
+
+**One common approach is to add an entry to the "Startup Applications" tool:**
+
+- Open the "Startup Applications" tool by searching for it in the Activities overview or running `gnome-session-properties` in the terminal.
+- Click the "Add" button.
+- Fill in the "Name" field (e.g., "Start File Classifier").
+- In the "Command" field, enter the full path to the start_services.sh script (e.g., /home/YOUR_USERNAME/path/to/script/start.sh).
+- Click "Add" and close the "Startup Applications" tool.
+
+Now, the bash script will run automatically when you log in to your Ubuntu system.
+
+**Note:** Please note that this approach will only work when you log in with a graphical environment, as it relies on the GNOME startup applications feature. If you need to run the script in a non-GUI environment or before user login, you may need to use a different method, such as a systemd service or a cron job.
 
 ## TODO
-
 
 - **_File size-based classification_**: Classify files based on their size (e.g., create separate folders for small, medium, and large files) in addition to their file type.
 
