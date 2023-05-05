@@ -102,3 +102,7 @@ Now, the bash script will run automatically when you log in to your Ubuntu syste
 - **_File integrity check_**: Perform a file integrity check (e.g., using checksums) to ensure that duplicate files are not only similar in name but also identical in content before deleting them.
 
 - **_GUI_**: Develop a graphical user interface (GUI) for the script, making it more user-friendly and easier to configure and monitor.
+
+## License
+
+This project is licensed under the MIT License.
