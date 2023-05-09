@@ -1,5 +1,7 @@
 # File Classifier
 
+[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+
 ## Overview
 
 The File Classifier is a Python script that monitors a specified directory (typically the Downloads folder) and automatically organizes files into different folders based on their file types and the date they were created or last modified. It can also identify and delete duplicate files.
