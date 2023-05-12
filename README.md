@@ -111,6 +111,24 @@ Now, the bash script will run automatically when you log in to your Ubuntu syste
 
 - **_GUI_**: Develop a graphical user interface (GUI) for the script, making it more user-friendly and easier to configure and monitor.
 
+## Support The Project
+
+If you find this script helpful and would like to support its development and maintenance, please consider the following options:
+
+- **_Star the repository_**: If you're using this script from a GitHub repository, please give the project a star on GitHub. This helps others discover the project and shows your appreciation for the work done.
+
+- **_Share your feedback_**: Your feedback, suggestions, and feature requests are invaluable to the project's growth. Please open issues on the GitHub repository or contact the author directly to provide your input.
+
+- **_Contribute_**: You can contribute to the project by submitting pull requests with bug fixes, improvements, or new features. Make sure to follow the project's coding style and guidelines when making changes.
+
+- **_Spread the word_**: Share the project with your friends, colleagues, and social media networks to help others benefit from the script as well.
+
+- **_Donate_**: Show your appreciation with a small donation. Your support will help me maintain and enhance the script. Every little bit helps, and your donation will make a big difference in my ability to keep this project alive and thriving.
+
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://bmc.link/mnestorov) [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.me/mnestorov)
+
+Your support is greatly appreciated and will help ensure the project's continued development and improvement. Thank you for being a part of the community!
+
 ## License
 
 This project is licensed under the MIT License.
