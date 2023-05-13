@@ -91,7 +91,7 @@ Now, the bash script will run automatically when you log in to your Ubuntu syste
 
 **Note:** Please note that this approach will only work when you log in with a graphical environment, as it relies on the GNOME startup applications feature. If you need to run the script in a non-GUI environment or before user login, you may need to use a different method, such as a systemd service or a cron job.
 
-## TODO
+## TODOs
 
 - **_File size-based classification_**: Classify files based on their size (e.g., create separate folders for small, medium, and large files) in addition to their file type.
 
