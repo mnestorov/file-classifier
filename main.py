@@ -6,7 +6,8 @@ import logging
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from config import (download_folder, classification_rules, GREEN, RESET, log_filename)
+from config import (download_folder, classification_rules, GREEN, RESET, log_filename, DAYS_BEFORE_ARCHIVE, ARCHIVE_ACTION, ARCHIVE_FOLDER)
+from datetime import timedelta
 
 # Configure logging
 logging.basicConfig(filename=log_filename, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -66,6 +67,32 @@ def classify_existing_files():
                         print(f'{GREEN}Deleted duplicate file {file}{RESET}')
                         logging.info(f'Deleted duplicate file {file}')
 
+# Check folders for old files and either move them 
+# to an archive folder or delete them based on user preferences
+def folder_cleanup():
+    current_time = datetime.now()
+
+    for folder, extensions in classification_rules.items():
+        folder_path = os.path.join(download_folder, folder)
+        for root, _, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                if os.path.getmtime(file_path) < (current_time - timedelta(days=DAYS_BEFORE_ARCHIVE)).timestamp():
+                    if ARCHIVE_ACTION == "move":
+                        archive_path = os.path.join(download_folder, ARCHIVE_FOLDER)
+                        if not os.path.exists(archive_path):
+                            os.makedirs(archive_path)
+
+                        shutil.move(file_path, os.path.join(archive_path, file))
+                        print(f'{GREEN}Moved old file {file} to {ARCHIVE_FOLDER}{RESET}')
+                        logging.info(f'Moved old file {file} to {ARCHIVE_FOLDER}')
+
+                    elif ARCHIVE_ACTION == "delete":
+                        os.remove(file_path)
+                        print(f'{GREEN}Deleted old file {file}{RESET}')
+                        logging.info(f'Deleted old file {file}')
+
+
 # Custom event handler to handle file creation events
 class DownloadHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -99,6 +126,12 @@ def main():
         folder_path = os.path.join(download_folder, folder)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
+            
+    # Also ensure the ARCHIVE_FOLDER exists if the action is set to "move"
+    if ARCHIVE_ACTION == "move":
+        archive_path = os.path.join(download_folder, ARCHIVE_FOLDER)
+        if not os.path.exists(archive_path):
+            os.makedirs(archive_path)
 
     # Classify existing files in the directory
     classify_existing_files()
@@ -109,12 +142,20 @@ def main():
     observer.schedule(event_handler, path=download_folder, recursive=False)
     observer.start()
 
+    last_cleanup_time = time.time()
+
     try:
         while True:
+            # If 24 hours have passed since the last cleanup
+            if time.time() - last_cleanup_time >= 86400:
+                folder_cleanup()
+                last_cleanup_time = time.time()
+
             time.sleep(1)
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
+
 
 if __name__ == '__main__':
     main()

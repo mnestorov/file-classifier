@@ -105,7 +105,7 @@ Now, the bash script will run automatically when you log in to your Ubuntu syste
 
 - **_Undo functionality_**: Implement an undo feature that allows users to revert the script's actions if they accidentally move or delete a file.
 
-- **_Automatic folder cleanup_**: Periodically check the folders for old files and either move them to an archive folder or delete them based on user preferences.
+- [x] **_Automatic folder cleanup_**: ~~Periodically check the folders for old files and either move them to an archive folder or delete them based on user preferences~~.
 
 - **_Notifications_**: Send notifications to the user when certain events occur, such as the creation of new files or the detection of duplicate files.
 
