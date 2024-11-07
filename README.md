@@ -133,10 +133,6 @@ You can send me money on Revolut by following this link: https://revolut.me/mnes
 
 ---
 
-Your support is greatly appreciated and will help ensure the project's continued development and improvement. Thank you for being a part of the community!
-
----
-
 ## License
 
 This project is licensed under the MIT License.
