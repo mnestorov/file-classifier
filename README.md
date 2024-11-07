@@ -11,12 +11,6 @@ You can send me money on Revolut by following this link: https://revolut.me/mnes
 
 ---
 
-- LTC: `LPV7EqTdEYjnFsBwaCtKuAB2XajMgxEh82`
-- USDT (BEP20): `0x4603b2b4e2f2a699cb7a65f6f564bbd5b91970cd`
-- USDT (TRC20): `TGMQjS7HHwXTtLdpgYdHc2GZZGEcGLrhca`
-
----
-
 ## Overview
 
 The File Classifier is a Python script that monitors a specified directory (typically the Downloads folder) and automatically organizes files into different folders based on their file types and the date they were created or last modified. It can also identify and delete duplicate files.
